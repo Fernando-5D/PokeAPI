@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<header>
+    <div class="bg-dark row px-5 py-3 m-0">
+        <h2 class="col-7 text-light fw-bold">PokeAPI</h2>
+
+        <form class="col-5 row m-0" method="post" action="/buscarPok">
+            <div class="col">
+                <input class="form-control rounded-3 rounded-end-0" type="search" name="nombrePok" placeholder="Buscar" style="height: 45px;"/>
+            </div>
+            
+            <button class="col-1 btn btn-light px-2 rounded-3 rounded-start-0" type="submit" style="width: 50px;">
+                <img src="static/img/buscar.png" style="width: 25px; height: 25px;">
+            </button>
+        </form>
+    </div>
+</header>
+
+<main>
+    {% block main %}
+    <div class="text-center mt-5 pt-5">
+        <h1 class="mt-5 pt-4">Usa el buscador para buscar Pokemones</h1>
+        <img src="static/img/pokebola.png" class="mt-4" style="width: 125px;">
+    </div>
+    {% endblock main %}
+</main>
+{% endblock contenido %}
