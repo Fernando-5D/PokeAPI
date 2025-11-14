@@ -1,48 +1,70 @@
 {% extends 'form.html' %}
 
 {% block main %}
-<div class="my-4 mx-5 px-5">
+<div class="my-5 mx-5 px-5">
   <div class="card">
     <div class="card-body row">
       <div class="col-4 text-center">
         <h2 class="text-capitalize fw-bold">{{ pokemon["name"] }}</h2>
-        <img src="{{ pokemon["sprites"]["spriteDef"] }}" id="sprite" style="height: 240px;">
-        <div class="row">
-          <div class="col">
-            <label class="btn btn-dark" for="def">Default</label>
-            <input class="btn-check" type="radio" id="def" name="checkSprite" checked>
-          </div>
+        <div class="bg-light rounded-2">
+          <img src="{{ pokemon["sprites"]["spriteDef"] }}" id="spriteImg" style="height: 240px;">
+          <div class="row">
+            <button class="col btn btn-dark rounded-top-0 rounded-end-0 fw-semibold" style="width: 50px;"
+              id="btnDef">Default</button>
 
-          <div class="col">
-            <label class="btn btn-dark" for="shi">Shiny</label>
-            <input class="btn-check" type="radio" id="shi" name="checkSprite">
+            <button class="col btn btn-dark rounded-top-0 rounded-start-0 fw-semibold" style="width: 50px;"
+              id="btnShi">Shiny</button>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row px-2">
           {% with types = pokemon["types"] %}
-          {% for type in types %}
-          <span class="col mx-3 my-2 badge text-capitalize px-3 py-2" style="background-color: {{ badges[type["type"]["name"]] }};">{{ type["type"]["name"] }}</span>
-          {% endfor %}
+            {% if types %}
+              {% for type in types %}
+                {% with nameType = type["type"]["name"] %}
+                <span class="col mx-1 mt-3 badge {{ badges[nameType][1] }} text-capitalize px-3 py-2"
+                  style="background-color: {{ badges[nameType][0] }};">{{ nameType }}</span>
+                {% endwith %}
+              {% endfor %}
+            {% else %}
+            <span class="col mx-1 mt-3 badge text-capitalize px-3 py-2"
+              style="background-color: rgb(43, 43, 43);">Unknown</span>
+            {% endif %}
           {% endwith %}
         </div>
       </div>
 
       <div class="col-8 border-start px-5">
-        {% with statsName = ["HP", "ATK", "DEF", "S-ATK", "S-DEF", "VEL"] %}
-        {% for statName in statsName %}
-        <div class="row mt-3">
-          <p class="col-2 fs-5 fw-bold">{{ statName }}</p>
-          <div class="progress col-10" role="progressbar" style="height: 30px;" aria-valuenow="{{ pokemon["stats"]["base_stat"] }}" aria-valuemin="0" aria-valuemax="120">
-            <div class="progress-bar">{{ pokemon["stats"]["base_stat"] }}</div>
+        {% with statsName = ["HP", "ATK", "DEF", "S-ATK", "S-DEF", "VEL"],
+          progressColor = ["bg-success", "bg-danger", "bg-primary", "bg-danger", "bg-info", "bg-warning"] %}
+          {% for i in range(0, 6) %}
+          <div class="row mt-3">
+            <p class="col-2 fs-5 fw-bold">{{ statsName[i] }}</p>
+            <div class="col-10 progress px-0" role="progressbar" style="height: 31px;" 
+              aria-valuenow="{{ pokemon["stats"][i]["base_stat"] / 2}}" aria-valuemin="0" aria-valuemax="60">
+              <div class="progress-bar {{ progressColor[i] }} fw-bold" style="width: {{ pokemon["stats"][i]["base_stat"] * 100 / 120}}%; background-color: orange;">
+                {{ pokemon["stats"][i]["base_stat"] }}
+              </div>
+            </div>
           </div>
-        </div>
-        {% endfor %}
+          {% endfor %}
         {% endwith %}
       </div>
     </div>
   </div>
 </div>
 
-<script src="static/js/sprite.js"></script>
+<script>
+  var btnDef = document.getElementById("btnDef")
+  var btnShi = document.getElementById("btnShi")
+  var spriteImg = document.getElementById("spriteImg")
+
+  btnDef.addEventListener("click", () => {
+    spriteImg.src = "{{ pokemon.sprites.spriteDef }}"
+  })
+
+  btnShi.addEventListener("click", () => {
+    spriteImg.src = "{{ pokemon.sprites.spriteShiny }}"
+  })
+</script>
 {% endblock main %}
