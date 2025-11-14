@@ -22,7 +22,7 @@
     <div class="text-center mt-5 pt-5">
         <h1 class="mt-5 pt-4">
             {% with error = get_flashed_messages() %}
-            {% if error %} {{ error[0] }} {% else %} Usa el buscador para buscar Pokemones {% endif %}
+                {% if error %} {{ error[0] }} {% else %} Usa el buscador para buscar Pokemones {% endif %}
             {% endwith %}
         </h1>
 

@@ -1,14 +1,11 @@
-def = document.getElementById("def")
-shi = document.getElementById("shi")
-sprite = document.getElementById("sprite")
+var def = document.getElementById("def")
+var shi = document.getElementById("shi")
+var sprite = document.getElementById("sprite")
 
-function changeSprite(check, spriteName) {
-    check.addEventListener("change", () => {
-        if (check.checked) {
-            sprite.setAttribute("src", `{{ pokemon[\"${spriteName}\"] }}`)
-        }
-    })
-}
+def.addEventListener("change", () => {
+    if (def.checked) sprite.src = "{{ pokemon.sprites.spriteDef }}"
+})
 
-changeSprite(def, "spriteDef")
-changeSprite(shi, "spriteShiny")
+shi.addEventListener("change", () => {
+    if (shi.checked) sprite.src = "{{ pokemon.sprites.spriteShiny }}"
+})

@@ -41,8 +41,10 @@ def buscarPoke():
                     resp = resp.json()
                     
                     pokemon = {
-                        "spriteDef": resp["sprites"]["front_default"],
-                        "spriteShiny": resp["sprites"]["front_shiny"],
+                        "sprites": {
+                            "spriteDef": resp["sprites"]["front_default"],
+                            "spriteShiny": resp["sprites"]["front_shiny"],
+                        },
                         "id": resp["id"],
                         "name": resp["name"],
                         "types": resp["types"],
