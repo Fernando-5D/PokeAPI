@@ -4,24 +4,24 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "pokeapi"
 badges = {
-    "normal": ["rgb(127, 127, 127)"],
-    "fighting": ["rgb(255, 136, 57)"],
-    "flying": ["rgb(182, 194, 207)"],
-    "poison": ["rgb(76, 145, 59)"],
-    "ground": ["rgb(177, 122, 72)"],
-    "rock": ["rgb(206, 191, 176)"],
-    "bug": ["rgba(20, 170, 0, 1)"],
-    "ghost": ["rgb(235, 235, 235)", "text-dark"],
-    "steel": ["rgb(80, 88, 97)"],
-    "fire": ["rgb(255, 88, 46)"],
-    "water": ["rgb(104, 164, 255)"],
-    "grass": ["rgb(150, 211, 81)"],
-    "electric": ["rgb(231, 214, 62)"],
-    "psychic": ["rgb(151, 119, 182)"],
-    "ice": ["rgb(108, 197, 219)"],
-    "dragon": ["rgb(170, 36, 36)"],
-    "dark": ["rgb(57, 38, 75)"],
-    "fairy": ["rgb(228, 150, 198)"]
+    "normal": ["rgb(212, 159, 169)"],
+    "fighting": ["rgb(250, 102, 54)"],
+    "flying": ["rgb(155, 185, 210)"],
+    "poison": ["rgb(161, 106, 225)"],
+    "ground": ["rgb(175, 117, 44)"],
+    "rock": ["rgb(144, 63, 33)"],
+    "bug": ["rgb(60, 161, 83)"],
+    "ghost": ["rgb(148, 105, 151)"],
+    "steel": ["rgb(65, 199, 154)"],
+    "fire": ["rgb(255, 75, 92)"],
+    "water": ["rgb(16, 85, 232)"],
+    "grass": ["rgb(35, 215, 80)"],
+    "electric": ["rgb(250, 255, 111)", "text-dark"],
+    "psychic": ["rgb(251, 27, 149)"],
+    "ice": ["rgb(133, 219, 251)", "text-dark"],
+    "dragon": ["rgb(100, 215, 231)"],
+    "dark": ["rgb(91, 89, 126)"],
+    "fairy": ["rgb(248, 17, 105)"]
 }
 
 @app.route("/")
